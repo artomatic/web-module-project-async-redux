@@ -59,7 +59,8 @@ function Form (props) {
         event.preventDefault();
         addActivity(props.activity);
     }
-
+    
+    const exists = props.favorites.some(item => item.key === props.activity.key)
 
     return (
         <div>
@@ -106,8 +107,12 @@ function Form (props) {
                         GENERATE ACTIVITY
                     </button>
                 </div>
-
-                { props.favorites.some(item => {item.key !== props.activity.key}) && 
+                
+                {/* {console.log('props.favorites',props.favorites)}
+                {console.log('props.activity.key',props.activity.key)}
+                {console.log('.some',props.favorites.some(item => {item.key === props.activity.key}))} */}
+                {console.log(exists)}
+                { !exists && 
                 <div>
                     {props.activity && <h4>
                         {props.activity.activity}
