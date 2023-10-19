@@ -108,10 +108,6 @@ function Form (props) {
                     </button>
                 </div>
                 
-                {/* {console.log('props.favorites',props.favorites)}
-                {console.log('props.activity.key',props.activity.key)}
-                {console.log('.some',props.favorites.some(item => {item.key === props.activity.key}))} */}
-                {console.log(exists)}
                 { !exists && 
                 <div>
                     {props.activity && <h4>

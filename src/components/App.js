@@ -6,7 +6,6 @@ import Form from './Form';
 import '../App.css';
 
 function App(props) {
-  console.log('appState', props.state)
   return (
     <div className="App" style={{
       backgroundColor: 'tan'
