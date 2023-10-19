@@ -3,16 +3,12 @@ import { connect } from 'react-redux';
 import { updateInput, updateActivity } from '../actions/formActions';
 import { toggleCategory } from '../actions/categoryActions';
 import { addActivity } from '../actions/favoritesActions';
+import { fetchActivity } from '../actions/fetchAction';
 import axios from 'axios';
-
-
-const URL = 'https://www.boredapi.com/api/activity'
-
-
 
 function Form (props) {
 
-    const {updateInput, addActivity, toggleCategory, updateActivity} = props
+    const {updateInput, addActivity, toggleCategory, fetchActivity} = props
 
     const handleCategoryChange = (event) => {
         toggleCategory(event.target.value);
@@ -23,6 +19,8 @@ function Form (props) {
         const value = evt.target.value;
         updateInput(name, value);
     }
+
+    const URL = 'https://www.boredapi.com/api/activity';
 
     const getNewURL = () => {
         let newURL = URL;
@@ -36,23 +34,11 @@ function Form (props) {
             newURL += `?price=${props.price}`
         }
         return newURL    
-    }
+    };
 
     const handleGenerateClick = (event) => {
         event.preventDefault();
-
-        axios.get(getNewURL())
-            .then (response => {
-                console.log(response.data);
-                const newActivity = {
-                    activity: response.data.activity,
-                    key: response.data.key
-                }
-                updateActivity(newActivity);
-            })
-            .catch (error => {
-                console.log(error);
-            })
+        fetchActivity(getNewURL())
     }
 
     const handleAddClick = (event) => {
@@ -125,7 +111,7 @@ const mapStateToProps = (state) => {
     return {
         favorites: [...state.favoritesReducer.favorites],
         category: state.categoryReducer.category,
-        activity: state.formReducer.activity,
+        activity: state.fetchReducer.activity,
         type: state.formReducer.type,
         participants: state.formReducer.participants,
         price: state.formReducer.price,
@@ -133,5 +119,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-
-export default connect(mapStateToProps, {updateInput, toggleCategory, updateActivity, addActivity})(Form)
+export default connect(mapStateToProps, {updateInput, toggleCategory, fetchActivity, addActivity})(Form)

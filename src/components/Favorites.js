@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addActivity, removeActivity } from "../actions/favoritesActions";
-import FavoritesItem from './FavoritesItem';
 
 
 function Favorites(props) {
