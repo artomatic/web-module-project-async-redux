@@ -5,6 +5,8 @@ import { toggleCategory } from '../actions/categoryActions';
 import { addActivity } from '../actions/favoritesActions';
 import { fetchActivity } from '../actions/fetchAction';
 
+import '../App.css'
+
 function Form (props) {
 
     const {updateInput, addActivity, toggleCategory, fetchActivity} = props
@@ -48,18 +50,18 @@ function Form (props) {
     const exists = props.favorites.some(item => item.key === props.activity.key)
 
     return (
-        <div>
+        <div className='formContainer'>
             <h3>Search For An Activity</h3>
-            <form>
+            <form className='formWrapper'>
                 <div>
-                    <select onChange={handleCategoryChange}>
+                    <select className='genButton' onChange={handleCategoryChange}>
                         <option>CHOOSE SEARCH CATEGORY</option>
                         <option>type</option>
                         <option>participants</option>
                         <option>price</option>
                     </select>
                     {props.category.participants && 
-                    <select onChange={handleInputChange} name='participants'>
+                    <select className='genButton' onChange={handleInputChange} name='participants'>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -69,7 +71,7 @@ function Form (props) {
                     }
 
                     {props.category.type && 
-                    <select onChange={handleInputChange} name='type'>
+                    <select className='genButton' onChange={handleInputChange} name='type'>
                         <option>education</option>
                         <option>recreational</option>
                         <option>social</option>
@@ -79,7 +81,7 @@ function Form (props) {
                     }
 
                     {props.category.price && 
-                    <select onChange={handleInputChange} name='price'>
+                    <select className='genButton' onChange={handleInputChange} name='price'>
                         <option value={'0.1'}>$</option>
                         <option value={'0.3'}>$$</option>
                         <option value={'0.6'}>$$$</option>
@@ -88,7 +90,7 @@ function Form (props) {
                 </div>
 
                 <div>
-                    <button onClick={handleGenerateClick}>
+                    <button className='genButton' onClick={handleGenerateClick}>
                         GENERATE ACTIVITY
                     </button>
                 </div>
@@ -97,7 +99,7 @@ function Form (props) {
                 <div>
                     {props.activity && <h4>
                         {props.activity.activity}
-                        <button style={{padding: '1px', margin: '2px', borderRadius: '50%'}} className="material-icons" onClick={handleAddClick}>add_circle</button>
+                        <button className="material-icons" onClick={handleAddClick}>add_circle</button>
                     </h4>}
                 </div>}
 

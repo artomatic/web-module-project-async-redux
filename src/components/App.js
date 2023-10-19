@@ -7,13 +7,9 @@ import '../App.css';
 
 function App(props) {
   return (
-    <div className="App" style={{
-      backgroundColor: 'tan'
-      }}>
+    <div className="App">
       <h1>Activity Brainstorm</h1>
-      <div style={{
-        backgroundColor: 'ivory'
-        }}>
+      <div className='container'>
         <Form/>
 
         <Favorites/>
