@@ -6,6 +6,12 @@ import FavoritesItem from './FavoritesItem';
 
 function Favorites(props) {
 
+    const {removeActivity, addActivity} = props;
+
+    const handleRemove = (key) => {
+        removeActivity(key)
+    }
+
     return (
         <div>
             <div>
@@ -14,7 +20,12 @@ function Favorites(props) {
 
             <div>
                 {props.favorites.map(activity => {
-                    return <h4 key={activity.key}>{activity.activity}</h4>
+                    return <div key={activity.key}>
+                        <h4>
+                            {activity.activity}
+                            <button style={{padding: '1px', margin: '2px', borderRadius: '50%'}} className="material-icons" onClick={()=>{handleRemove(activity.key)}}>remove_circle</button>
+                        </h4>
+                    </div>
                 })
                 }
             </div>

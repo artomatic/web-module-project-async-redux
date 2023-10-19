@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateActivity, updateInput } from '../actions/formActions';
+import { updateInput, updateActivity } from '../actions/formActions';
 import { toggleCategory } from '../actions/categoryActions';
+import { addActivity } from '../actions/favoritesActions';
 import axios from 'axios';
 
 
@@ -10,14 +11,14 @@ const URL = 'https://www.boredapi.com/api/activity'
 
 
 function Form (props) {
-    console.log(props)
 
-    const {updateInput, updateActivity, toggleCategory} = props
+    const {updateInput, addActivity, toggleCategory, updateActivity} = props
 
     const handleCategoryChange = (event) => {
         toggleCategory(event.target.value);
     }
-    const handleChange = (evt) => {
+
+    const handleInputChange = (evt) => {
         const name = evt.target.name;
         const value = evt.target.value;
         updateInput(name, value);
@@ -34,20 +35,29 @@ function Form (props) {
         if (props.category.price) {
             newURL += `?price=${props.price}`
         }
-        console.log(newURL)
         return newURL    
     }
 
-    const handleClick = (event) => {
+    const handleGenerateClick = (event) => {
         event.preventDefault();
 
         axios.get(getNewURL())
             .then (response => {
-                console.log(response.data)
+                console.log(response.data);
+                const newActivity = {
+                    activity: response.data.activity,
+                    key: response.data.key
+                }
+                updateActivity(newActivity);
             })
             .catch (error => {
-                console.log(error)
+                console.log(error);
             })
+    }
+
+    const handleAddClick = (event) => {
+        event.preventDefault();
+        addActivity(props.activity);
     }
 
 
@@ -63,7 +73,7 @@ function Form (props) {
                         <option>price</option>
                     </select>
                     {props.category.participants && 
-                    <select onChange={handleChange} name='participants'>
+                    <select onChange={handleInputChange} name='participants'>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -73,7 +83,7 @@ function Form (props) {
                     }
 
                     {props.category.type && 
-                    <select onChange={handleChange} name='type'>
+                    <select onChange={handleInputChange} name='type'>
                         <option>education</option>
                         <option>recreational</option>
                         <option>social</option>
@@ -83,7 +93,7 @@ function Form (props) {
                     }
 
                     {props.category.price && 
-                    <select onChange={handleChange} name='price'>
+                    <select onChange={handleInputChange} name='price'>
                         <option value={'0'}>$</option>
                         <option value={'0.5'}>$$</option>
                         <option value={'1'}>$$$</option>
@@ -92,10 +102,18 @@ function Form (props) {
                 </div>
 
                 <div>
-                    <button onClick={handleClick}>
+                    <button onClick={handleGenerateClick}>
                         GENERATE ACTIVITY
                     </button>
                 </div>
+
+                { props.favorites.some(item => {item.key !== props.activity.key}) && 
+                <div>
+                    {props.activity && <h4>
+                        {props.activity.activity}
+                        <button style={{padding: '1px', margin: '2px', borderRadius: '50%'}} className="material-icons" onClick={handleAddClick}>add_circle</button>
+                    </h4>}
+                </div>}
 
             </form>
         </div>
@@ -104,6 +122,7 @@ function Form (props) {
 
 const mapStateToProps = (state) => {
     return {
+        favorites: [...state.favoritesReducer.favorites],
         category: state.categoryReducer.category,
         activity: state.formReducer.activity,
         type: state.formReducer.type,
@@ -114,4 +133,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {updateInput, updateActivity, toggleCategory})(Form)
+export default connect(mapStateToProps, {updateInput, toggleCategory, updateActivity, addActivity})(Form)

@@ -10,13 +10,12 @@ const initialState = {
 }
 
 const categoryReducer = (state = initialState, action) => {
-    console.log('category reducer triggered', action.payload)
     switch (action.type) {
         case TOGGLE_CATEGORY:{
             return {
                 ...state,
                 category: {
-                    ...state.category,
+                    ...initialState,
                     [action.payload]: !state.category[action.payload]
                 }
             }
