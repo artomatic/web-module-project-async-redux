@@ -1,16 +1,7 @@
 import { ADD_ACTIVITY, REMOVE_ACTIVITY } from "../actions/favoritesActions";
 
 const initialState = {
-    favorites: [
-        {
-            activity: "Write a poem",
-            key: "6453647"
-        },
-        {
-            activity: "Configure two-factor authentication on your accounts",
-            key: '7465738'
-        },
-    ]
+    favorites: []
 }
 
 const favoritesReducer = (state = initialState, action) => {

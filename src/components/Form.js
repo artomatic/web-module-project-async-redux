@@ -4,7 +4,6 @@ import { updateInput, updateActivity } from '../actions/formActions';
 import { toggleCategory } from '../actions/categoryActions';
 import { addActivity } from '../actions/favoritesActions';
 import { fetchActivity } from '../actions/fetchAction';
-import axios from 'axios';
 
 function Form (props) {
 
@@ -81,9 +80,9 @@ function Form (props) {
 
                     {props.category.price && 
                     <select onChange={handleInputChange} name='price'>
-                        <option value={'0'}>$</option>
-                        <option value={'0.5'}>$$</option>
-                        <option value={'1'}>$$$</option>
+                        <option value={'0.1'}>$</option>
+                        <option value={'0.3'}>$$</option>
+                        <option value={'0.6'}>$$$</option>
                     </select>
                     }
                 </div>
