@@ -4,22 +4,16 @@ import { addActivity, removeActivity } from "../actions/favoritesActions";
 
 import '../App.css';
 
-
-
 function Favorites(props) {
-
     const {removeActivity, addActivity} = props;
-
     const handleRemove = (key) => {
         removeActivity(key)
     }
-
     return (
         <div className="favContainer">
             <div>
                 <h3>Favorite Activities</h3>
             </div>
-
             <div className="favList">
                 {props.favorites.map(activity => {
                     return <div key={activity.key}>

@@ -3,21 +3,15 @@ import {connect} from 'react-redux';
 import Favorites from './Favorites';
 import Form from './Form';
 
-import '../App.css';
-
 function App(props) {
   return (
     <div className="App">
       <h1>Activity Brainstorm</h1>
       <div className='container'>
         <Form/>
-
         <Favorites/>
-      </div>
-      
-    </div>
-
-    
+      </div>    
+    </div> 
   );
 }
 

@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateInput, updateActivity } from '../actions/formActions';
+import { updateInput } from '../actions/formActions';
 import { toggleCategory } from '../actions/categoryActions';
 import { addActivity } from '../actions/favoritesActions';
 import { fetchActivity } from '../actions/fetchAction';
-
-import '../App.css'
 
 function Form (props) {
 
@@ -119,5 +117,7 @@ const mapStateToProps = (state) => {
         key: state.formReducer.key,
     }
 }
+
+
 
 export default connect(mapStateToProps, {updateInput, toggleCategory, fetchActivity, addActivity})(Form)
