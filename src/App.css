@@ -43,7 +43,6 @@ h4 {
 }
 
 .material-icons {
-
   border: none;
   background-color: ivory;
   margin: 2px;
@@ -52,7 +51,9 @@ h4 {
 
 .genButton {
   font-family: 'Courier New', Courier, monospace;
-  border-radius: 30px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  margin: 0.75rem;
   transition: all 0.3s ease;
 }
 

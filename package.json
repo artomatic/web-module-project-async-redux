@@ -50,7 +50,7 @@
     "sass": "^1.32.8",
     "style-loader": "^3.3.1",
     "styled-components": "5.3.3",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "proxy": "https://bored-api.appbrewery.com"
   }
-  // "proxy": "https://www.boredapi.com"
 }

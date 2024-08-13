@@ -19,10 +19,11 @@ function Form (props) {
         updateInput(name, value);
     }
 
-    const URL = 'https://www.boredapi.com/api/activity';
+    const proxyUrl = 'https://api.allorigins.win/raw?url=';
+    const URL = 'https://bored-api.appbrewery.com/filter';
 
     const getNewURL = () => {
-        let newURL = URL;
+        let newURL = proxyUrl + URL;
         if (props.category.type) {
             newURL += `?type=${props.type}`
         }
@@ -69,7 +70,7 @@ function Form (props) {
                     }
 
                     {props.category.type && 
-                    <select className='genButton' onChange={handleInputChange} name='type'>
+                    <select className='genButton type' onChange={handleInputChange} name='type'>
                         <option>education</option>
                         <option>recreational</option>
                         <option>social</option>
@@ -79,7 +80,7 @@ function Form (props) {
                     }
 
                     {props.category.price && 
-                    <select className='genButton' onChange={handleInputChange} name='price'>
+                    <select className='genButton price' onChange={handleInputChange} name='price'>
                         <option value={'0.1'}>$</option>
                         <option value={'0.3'}>$$</option>
                         <option value={'0.6'}>$$$</option>

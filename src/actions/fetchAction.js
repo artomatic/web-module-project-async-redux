@@ -9,10 +9,11 @@ export const fetchActivity = (url) => dispatch => {
     dispatch({type:FETCH_ACTIVITY_START});
     axios.get(url)
         .then (response => {
-            console.log(response.data);
+            console.log('this is the response',response.data);
+            const index = Math.floor(Math.random() * response.data.length);
             const newActivity = {
-                activity: response.data.activity,
-                key: response.data.key
+                activity: response.data[index].activity,
+                key: response.data[index].key,
             }
             dispatch({type: FETCH_ACTIVITY_SUCCESS, payload: newActivity})
         })
